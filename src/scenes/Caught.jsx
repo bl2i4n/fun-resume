@@ -24,7 +24,7 @@ export default function Caught({ resume, onAgain, onPlain }) {
       <Text x={96} y={8} className="big">GOT</Text>
       <Text x={96} y={26} className="big">IT!</Text>
       <Text x={8} y={64}>{JOB.name}</Text>
-      <Text x={8} y={74} className="dim">joined {resume.name.split(' ')[0].toUpperCase()}'s team.</Text>
+      <Text x={8} y={74} className="dim">joined the party!</Text>
       <ListMenu x={0} y={86} w={160} h={58} rows={3} rowHeight={12} padX={16} padY={10} items={items} onSelect={pick} />
     </>
   )

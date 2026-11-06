@@ -10,12 +10,12 @@ Reference: http://www.rleonardi.com/interactive-resume/ (scroll-driven side-scro
 - [x] Studio name: **Error & EXP** (Brian's Substack). Splash links to https://errorandexp.substack.com
 - [x] Professor: pixel caricature inspired by Dario Amodei. See "Professor" below for the caveats.
 - [x] Art plan: photo→4-shade pixel script for faces, hand-authored pixel grids for creature/UI, swap for Aseprite/licensed sprites later if wanted.
-- [ ] Brian decides: Professor's in-game name (`PROF. D` recommended) and whether the Dario likeness stays
+- [x] Professor is `PROF. D` with the Dario likeness (confirmed 2026-11-05). `public/sprites/prof.png` is variant d3 from `tools/prof_variants/`; no lab coat yet. Footer credit still needs the photo's author/license line.
 - [ ] Brian provides: GitHub + LinkedIn URLs, the resume PDF, 1–3 PROJECTS (the resume has no projects section)
 - [x] The wild Job is a **SOFTWARE ENGINEER** (decided 2026-11-05). HP box shows `SOFTWARE ENG` (Gen 1 boxes fit ~12 chars); text boxes use the full title. LINKACHU is the creature's design/sprite name only. Level TBD (`Lv.5`?)
 - [ ] Find/commission original chiptune tracks (title, battle, caught). Can't use the real Pokémon music.
-- [ ] `git init` and pick hosting (Vercel/Netlify), domain optional
-- [ ] Scaffold project and build MVP (splash → title → battle, intro and skip after)
+- [x] `git init` done 2026-11-05. Still to pick: hosting (Vercel/Netlify), domain optional
+- [x] MVP built 2026-11-05 (`npm run dev`): splash → title → intro (SKIP, NEW GAME/CONTINUE) → battle (FIGHT sub-lists, ITEM, PKMN gag, RUN → plain resume, HIRE BALL with broke-free joke) → caught screen. Name-entry letter grid, rival beat and bug gag not built yet.
 
 ## Current direction: Pokémon Red/Blue parody
 
