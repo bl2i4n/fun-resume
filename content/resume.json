@@ -1,0 +1,148 @@
+{
+  "name": "Brian De La Cruz",
+  "title": "Senior Support Engineer",
+  "location": "San Francisco",
+  "email": "briandelacruz408@gmail.com",
+  "substack": "https://errorandexp.substack.com",
+  "studio": "Error & EXP",
+  "job": {
+    "name": "SOFTWARE ENGINEER",
+    "boxName": "SOFTWARE ENG",
+    "sprite": "linkachu",
+    "type": "NORMAL / REMOTE",
+    "level": 5,
+    "hpLabel": "DOUBT"
+  },
+  "experience": [
+    {
+      "company": "OneTrust",
+      "role": "Senior Support Engineer",
+      "year": "2025",
+      "bullets": [
+        "Diagnosed platform integration issues by reviewing customer-side HTML, CSS, JavaScript, and OneTrust's SDK to identify root causes and ensure successful implementation.",
+        "Partnered with engineering and product teams to analyze bugs, reproduce issues, and deliver technical solutions.",
+        "Mentored new team members by onboarding them to core product features, enabling them to independently support customers within three weeks."
+      ],
+      "battleText": [
+        "BRIAN used ONETRUST!",
+        "Root-caused SDK and integration bugs by reading customer HTML, CSS and JS.",
+        "Onboarded new teammates to independence in 3 weeks."
+      ]
+    },
+    {
+      "company": "Netflix",
+      "role": "Senior Support Engineer",
+      "year": "2023",
+      "bullets": [
+        "Shipped a new service for internal escalations which improved support workflows.",
+        "Built and shipped a documentation system that streamlined access to technical and developer info.",
+        "Thoroughly investigated and provided effective solutions for customers experiencing development and deployment challenges.",
+        "Collaborated closely with the Developer Education team to onboard new graduates and launch new go-to-market features."
+      ],
+      "battleText": [
+        "BRIAN used NETFLIX!",
+        "Shipped an internal escalations service and a developer docs system.",
+        "Onboarded new grads with the Developer Education team."
+      ]
+    },
+    {
+      "company": "Plaid",
+      "role": "Support Engineer",
+      "year": "2022",
+      "bullets": [
+        "Accelerated resolution of tickets by creating macros to guide troubleshooting.",
+        "Revitalized organization of support teams' existing knowledge base.",
+        "Compiled strategies for reducing backlog of bugs whilst increasing teams technical aptitude.",
+        "Resolved bugs for long-term customers."
+      ],
+      "battleText": [
+        "BRIAN used PLAID!",
+        "Cut ticket resolution time with troubleshooting macros.",
+        "Reorganized the knowledge base and shrank the bug backlog."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "move": "DEBUG",
+      "text": "Troubleshoot complex customer issues using JavaScript, HTML/CSS, browser DevTools, and API debugging to identify root causes and resolve integration problems."
+    },
+    {
+      "move": "GIT CLI",
+      "text": "Navigate and maintain code workflows with Git, VS Code, and CLI to validate customer setups and reproduce issues."
+    },
+    {
+      "move": "PIPELINE",
+      "text": "Diagnose deployment issues in Jenkins and Spinnaker, verifying pipeline failures, reproducing errors, and escalating platform bugs with clear technical detail."
+    },
+    {
+      "move": "TICKETS",
+      "text": "Deliver high-quality customer experiences through ticket management in Zendesk and Salesforce."
+    },
+    {
+      "move": "MENTOR",
+      "text": "Collaborate cross-functionally with engineering and product teams while mentoring peers and contributing to internal documentation."
+    }
+  ],
+  "education": [
+    {
+      "move": "OHLONE",
+      "school": "Ohlone College",
+      "degree": "Associate's Degree in Computer Science",
+      "year": "2016"
+    },
+    {
+      "move": "BLOC.IO",
+      "school": "Bloc.io",
+      "degree": "Fullstack Bootcamp",
+      "year": "2018"
+    }
+  ],
+  "certifications": [
+    {
+      "move": "OPENAI API",
+      "name": "Working with the OpenAI API",
+      "issuer": "DataCamp",
+      "year": "2025"
+    },
+    {
+      "move": "AI FLUENCY",
+      "name": "AI Fluency: Framework & Foundations",
+      "issuer": "Anthropic Academy",
+      "year": "2025"
+    }
+  ],
+  "projects": [
+    {
+      "move": "THIS SITE",
+      "text": "TODO: the resume you are playing. Built with React, pixel sprites drawn as data, original chiptune."
+    }
+  ],
+  "items": [
+    {
+      "name": "RESUME.PDF",
+      "action": "download",
+      "href": "TODO: /BrianDeLaCruzResume2025.pdf"
+    },
+    {
+      "name": "SUBSTACK",
+      "action": "link",
+      "href": "https://errorandexp.substack.com"
+    },
+    {
+      "name": "GITHUB",
+      "action": "link",
+      "href": "TODO"
+    },
+    {
+      "name": "LINKEDIN",
+      "action": "link",
+      "href": "TODO"
+    },
+    {
+      "name": "EMAIL",
+      "action": "mailto",
+      "href": "mailto:briandelacruz408@gmail.com"
+    }
+  ]
+}
