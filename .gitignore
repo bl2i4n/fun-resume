@@ -3,3 +3,4 @@ dist
 tools/.venv
 tools/downloads
 .DS_Store
+.playwright-mcp

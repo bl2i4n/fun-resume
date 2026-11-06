@@ -159,3 +159,9 @@ body { overflow: hidden; }
   display: inline-block; margin-bottom: 24px; font-family: var(--font); font-size: 9px;
   color: #0f380f; background: #9bbc0f; padding: 8px 10px; text-decoration: none; border: 2px solid #0f380f;
 }
+
+/* honor reduced motion: keep the game usable, drop the flourishes */
+@media (prefers-reduced-motion: reduce) {
+  .slide-in-right, .slide-in-left, .shake, .flash, .wipe { animation-duration: 0.01s !important; }
+  .hp-bar { transition: none; }
+}

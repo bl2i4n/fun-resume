@@ -115,7 +115,7 @@
   "projects": [
     {
       "move": "THIS SITE",
-      "text": "TODO: the resume you are playing. Built with React, pixel sprites drawn as data, original chiptune."
+      "text": "The resume you are playing: a Game Boy battle built with React and Vite. Sprites drawn as data, sound synthesized in the browser."
     }
   ],
   "items": [
