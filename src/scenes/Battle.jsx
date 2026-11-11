@@ -26,12 +26,25 @@ function buildMoves(r) {
   ]
 }
 
-function HpBar({ x, y, w, pct }) {
+function HpBar({ x, y, w, pct, label = 'HP' }) {
+  const color = pct > 50 ? 'var(--hp-green)' : pct > 20 ? 'var(--hp-yellow)' : 'var(--hp-red)'
   return (
     <>
-      <div className="abs" style={{ left: x, top: y, width: w, height: 4, border: '1px solid var(--c3)' }} />
-      <div className="hp-bar" style={{ left: x + 1, top: y + 1, width: Math.round((w - 2) * pct / 100) }} />
+      <span className="hp-label" style={{ left: x, top: y - 1 }}>{label}</span>
+      <div className="hp-track" style={{ left: x + 4 + label.length * 5, top: y, width: w - 4 - label.length * 5 }} />
+      <div className="hp-bar" style={{ left: x + 5 + label.length * 5, top: y + 1, width: Math.round((w - 6 - label.length * 5) * pct / 100), background: color }} />
     </>
+  )
+}
+
+/** Cream Emerald status box. */
+function HpBox({ x, y, w, h, name, level, label, pct }) {
+  return (
+    <div className="hpbox" style={{ left: x, top: y, width: w, height: h }}>
+      <div className="t" style={{ left: 5, top: 4 }}>{name}</div>
+      <div className="t" style={{ right: 5, top: 4 }}>Lv{level}</div>
+      <HpBar x={5} y={16} w={w - 14} pct={pct} label={label} />
+    </div>
   )
 }
 
@@ -119,10 +132,10 @@ export default function Battle({ resume, onCaught, onRun }) {
     setBox({ pages: pages([`${ME} used HIRE BALL!`]), after: null, pause: 0 })
     setPhase('ball')
     sfx.throwBall()
-    setBall({ x: 36, y: 64, shake: 0 })
-    later(() => setBall({ x: 124, y: 20, shake: 0 }), 30)
+    setBall({ x: 48, y: 80, shake: 0 })
+    later(() => setBall({ x: 172, y: 52, shake: 0 }), 30)
     later(() => setEnemyFx('hidden'), 600)
-    ;[1, 2, 3].forEach((n) => later(() => { sfx.shake(); setBall({ x: 124, y: 20, shake: n }) }, 900 + n * 600))
+    ;[1, 2, 3].forEach((n) => later(() => { sfx.shake(); setBall({ x: 172, y: 52, shake: n }) }, 900 + n * 600))
     later(() => {
       if (doubtRef.current === 100 && !threw.current) {
         threw.current = true
@@ -146,27 +159,21 @@ export default function Battle({ resume, onCaught, onRun }) {
 
   return (
     <>
+      <div className="bg battle" />
+      <div className="platform" style={{ left: 128, top: 60, width: 104, height: 24 }} />
+      <div className="platform" style={{ left: -8, top: 100, width: 120, height: 24 }} />
+
       {/* enemy */}
-      <Text x={8} y={2}>{JOB.boxName}</Text>
-      <Text x={8} y={12} className="dim">{JOB.hpLabel}</Text>
-      <HpBar x={50} y={12} w={50} pct={doubt} />
-      <Text x={8} y={22}>Lv{JOB.level}</Text>
+      <HpBox x={4} y={12} w={148} h={28} name={JOB.boxName} level={JOB.level} label={JOB.hpLabel} pct={doubt} />
       <Sprite
-        src={JOB.sprite} x={104} y={0} w={56} h={56}
-        className={`${phase === 'enter' ? 'slide-in-right' : ''} ${enemyFx === 'flash' ? 'flash' : ''}`}
+        src={JOB.sprite} x={148} y={6} w={64} h={64}
+        className={`${phase === 'enter' ? 'slide-in-right' : 'bob'} ${enemyFx === 'flash' ? 'flash' : ''}`}
         style={{ visibility: enemyFx === 'hidden' ? 'hidden' : 'visible' }}
       />
 
       {/* player */}
-      {playerIn && <Sprite src="brian_back" x={8} y={40} w={56} h={56} className={phase === 'enter' ? 'slide-in-left' : ''} />}
-      {playerIn && (
-        <>
-          <Text x={76} y={58}>{ME}</Text>
-          <Text x={128} y={58}>Lv{JOB.level}</Text>
-          <Text x={76} y={70} className="dim">CONFIDENCE</Text>
-          <HpBar x={76} y={80} w={80} pct={100} />
-        </>
-      )}
+      {playerIn && <Sprite src="brian_back" x={20} y={48} w={64} h={64} className={phase === 'enter' ? 'slide-in-left' : ''} />}
+      {playerIn && <HpBox x={120} y={78} w={114} h={28} name={ME} level={JOB.level} label="CONF" pct={100} />}
 
       {/* hire ball */}
       {ball && (
@@ -186,10 +193,10 @@ export default function Battle({ resume, onCaught, onRun }) {
       />
       {phase === 'menu' && (
         <>
-          <Text x={8} y={110}>What will</Text>
-          <Text x={8} y={126}>{ME} do?</Text>
+          <Text x={14} y={124} className="light">What will</Text>
+          <Text x={14} y={139} className="light">{ME} do?</Text>
           <ListMenu
-            x={64} y={96} w={96} h={48} cols={2} rows={2} colWidth={44} rowHeight={16} padX={16} padY={12}
+            x={120} y={112} w={120} h={48} cols={2} rows={2} colWidth={52} rowHeight={16} padX={18} padY={13}
             items={menuItems}
             onSelect={(i, it) => {
               if (it.label === 'FIGHT') setPhase('fight')
@@ -202,7 +209,7 @@ export default function Battle({ resume, onCaught, onRun }) {
       )}
       {phase === 'fight' && (
         <ListMenu
-          x={0} y={80} w={160} h={64} rows={4} rowHeight={12} padX={16} padY={10}
+          x={0} y={112} w={240} h={48} cols={2} rows={2} colWidth={108} rowHeight={16} padX={18} padY={13}
           items={MOVES.map((m) => ({ label: m.label }))} initial={fightIdx}
           onSelect={(i) => { setFightIdx(i); setSubOf(i); setPhase('sub') }}
           onCancel={toMenu}
@@ -211,17 +218,19 @@ export default function Battle({ resume, onCaught, onRun }) {
       {phase === 'sub' && (
         <>
           <ListMenu
-            x={0} y={80} w={160} h={64} rows={4} rowHeight={12} padX={16} padY={10}
+            x={0} y={112} w={240} h={48} cols={2} rows={2} colWidth={108} rowHeight={16} padX={18} padY={13}
             items={subs.map((s, i) => ({ label: s.label, dim: !!used[`${subOf}-${i}`] }))}
             onSelect={(i) => useMove(subOf, i)}
             onCancel={() => setPhase('fight')}
           />
-          <Text x={104} y={70} className="dim">{MOVES[subOf].label.slice(0, 7)}</Text>
+          <div className="hpbox" style={{ left: 150, top: 92, width: 86, height: 18 }}>
+            <div className="t" style={{ left: 5, top: 5 }}>{MOVES[subOf].label}</div>
+          </div>
         </>
       )}
       {phase === 'item' && (
         <ListMenu
-          x={24} y={24} w={136} h={72} rows={4} rowHeight={12} padX={16} padY={10}
+          x={96} y={12} w={140} h={96} rows={5} rowHeight={16} padX={18} padY={12}
           items={items.map((it) => ({ label: it.name }))}
           onSelect={(i) => useItem(items[i])}
           onCancel={toMenu}

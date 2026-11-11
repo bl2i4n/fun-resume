@@ -8,7 +8,7 @@
   "job": {
     "name": "SOFTWARE ENGINEER",
     "boxName": "SOFTWARE ENG",
-    "sprite": "linkachu",
+    "sprite": "ghost",
     "type": "NORMAL / REMOTE",
     "level": 5,
     "hpLabel": "DOUBT"

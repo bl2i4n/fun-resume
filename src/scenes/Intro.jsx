@@ -6,7 +6,7 @@ import ListMenu from '../components/ListMenu.jsx'
 import { pages } from '../text.js'
 import { sfx } from '../audio.js'
 
-const PROF = 'PROF. D'
+const PROF = 'PROF.\u00a0D' // non-breaking space keeps the name on one line
 const ME = 'BRIAN'
 
 const BEAT1 = [
@@ -46,9 +46,11 @@ export default function Intro({ onDone, job }) {
 
   return (
     <>
+      <div className="bg lab" />
+      <div className="platform" style={{ left: 80, top: 96, width: 80, height: 14 }} />
       {showCreature
-        ? <Sprite src={job.sprite} x={52} y={28} w={56} h={56} className="slide-in-right" />
-        : <Sprite src="prof" x={52} y={28} w={56} h={56} />}
+        ? <Sprite src="chick" x={96} y={56} w={48} h={48} className="slide-in-right" />
+        : <Sprite src="prof" x={96} y={26} w={48} h={80} />}
 
       {step === 0 && <TextBox pages={p1} onDone={() => { sfx.cry(); setStep(1) }} />}
       {step === 1 && <TextBox pages={p2} onDone={() => setStep(2)} />}
@@ -56,7 +58,7 @@ export default function Intro({ onDone, job }) {
       {step === 3 && (
         <>
           <TextBox pages={p3} active={false} />
-          <ListMenu x={88} y={24} w={72} h={72} items={names} rowHeight={14} padY={8} onSelect={pickName} />
+          <ListMenu x={140} y={20} w={96} h={72} items={names} rowHeight={14} padX={20} padY={10} onSelect={pickName} />
         </>
       )}
       {step === 4 && <TextBox pages={pJoke} onDone={() => setStep(5)} />}
@@ -64,7 +66,7 @@ export default function Intro({ onDone, job }) {
 
       <div
         className="t blink"
-        style={{ right: 4, top: 2, cursor: 'pointer' }}
+        style={{ right: 4, top: 4, cursor: 'pointer' }}
         onClick={(e) => { e.stopPropagation(); sfx.back(); onDone() }}
         role="button"
         aria-label="Skip intro"

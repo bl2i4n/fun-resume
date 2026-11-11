@@ -19,13 +19,15 @@ export default function Caught({ resume, onAgain, onPlain }) {
 
   return (
     <>
-      <Sprite src={JOB.sprite} x={8} y={4} w={56} h={56} />
-      <Sprite src="brian_front" x={60} y={20} w={32} h={40} />
-      <Text x={96} y={8} className="big">GOT</Text>
-      <Text x={96} y={26} className="big">IT!</Text>
-      <Text x={8} y={64}>{JOB.name}</Text>
-      <Text x={8} y={74} className="dim">joined the party!</Text>
-      <ListMenu x={0} y={86} w={160} h={58} rows={3} rowHeight={12} padX={16} padY={10} items={items} onSelect={pick} />
+      <div className="bg title" />
+      <div className="platform" style={{ left: 8, top: 60, width: 136, height: 22 }} />
+      <Sprite src={JOB.sprite} x={14} y={6} w={64} h={64} className="bob" />
+      <Sprite src="brian_front" x={84} y={8} w={40} h={64} />
+      <Sprite src="chick" x={112} y={26} w={48} h={48} />
+      <Text x={164} y={20} className="big light" style={{ textShadow: '2px 2px 0 #305830' }}>GOT</Text>
+      <Text x={164} y={40} className="big light" style={{ textShadow: '2px 2px 0 #305830' }}>IT!</Text>
+      <Text x={4} y={88} className="light" style={{ fontSize: 7, textShadow: '1px 1px 0 #305830' }}>{JOB.boxName} joined the party!</Text>
+      <ListMenu x={0} y={100} w={240} h={60} cols={2} rows={3} colWidth={112} rowHeight={14} padX={18} padY={9} items={items} onSelect={pick} />
     </>
   )
 }

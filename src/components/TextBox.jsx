@@ -4,13 +4,13 @@ import { useInput } from '../input.js'
 import { sfx } from '../audio.js'
 
 /**
- * Gen 1 text box with typewriter output.
+ * Emerald-style text box with typewriter output.
  *   pages   : array of pages, each an array of (<= 2) lines. See text.js pages().
  *   onDone  : called after the last page is dismissed with A.
  *   active  : when false the box renders but ignores input (menus overlay it).
  *   speed   : ms per character.
  */
-export default function TextBox({ pages = [], onDone, active = true, speed = 28, x = 0, y = 96, w = 160, h = 48, pause = 0 }) {
+export default function TextBox({ pages = [], onDone, active = true, speed = 28, x = 0, y = 112, w = 240, h = 48, pause = 0 }) {
   const [pageIdx, setPageIdx] = useState(0)
   const [count, setCount] = useState(0)
   const page = pages[pageIdx] || []
@@ -61,12 +61,12 @@ export default function TextBox({ pages = [], onDone, active = true, speed = 28,
   })
 
   return (
-    <Frame x={x} y={y} w={w} h={h}>
+    <Frame x={x + 3} y={y + 3} w={w - 6} h={h - 6} className="textbox">
       {lines.map((l, i) => (
-        <div key={i} className="t" style={{ left: 7, top: 14 + i * 16 }}>{l}</div>
+        <div key={i} className="t" style={{ left: 8, top: 9 + i * 15 }}>{l}</div>
       ))}
       {active && done && pages.length > 0 && (
-        <div className="t blink" style={{ right: 6, bottom: 2 }}>▼</div>
+        <div className="t blink" style={{ right: 6, bottom: 4, color: '#f86858' }}>▼</div>
       )}
     </Frame>
   )

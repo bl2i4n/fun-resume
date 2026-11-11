@@ -1,7 +1,7 @@
 /*
- * Text helpers for the 18 character x 2 line Game Boy text box.
+ * Text helpers for the 26 character x 2 line GBA text box.
  */
-export const COLS = 18
+export const COLS = 26
 export const ROWS = 2
 
 /** Word-wrap a string into lines of at most `cols` characters. Honors explicit \n. */

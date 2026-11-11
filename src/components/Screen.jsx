@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { dispatch } from '../input.js'
 
-const W = 160
-const H = 144
+const W = 240
+const H = 160
 
-/** The 160x144 Game Boy screen, integer-scaled to fit the viewport. */
+/** The 240x160 GBA screen, integer-scaled to fit the viewport. */
 export default function Screen({ children }) {
   const [scale, setScale] = useState(1)
   useEffect(() => {
     const fit = () => {
-      const s = Math.floor(Math.min((window.innerWidth - 24) / W, (window.innerHeight - 120) / H))
+      const s = Math.floor(Math.min((window.innerWidth - 24) / W, (window.innerHeight - 150) / H))
       setScale(Math.max(1, s))
     }
     fit()

@@ -5,7 +5,9 @@ import ListMenu from '../components/ListMenu.jsx'
 import { useInput } from '../input.js'
 import { sfx, music } from '../audio.js'
 
-/** Title screen: our own logo, Brian, the creature, PRESS START, then NEW GAME / CONTINUE. */
+const STARS = [[12, 40], [30, 120], [64, 52], [200, 44], [222, 96], [180, 130], [10, 92], [118, 44]]
+
+/** Title screen: BRIAN'S RESUME, the partner creatures on a grass patch, PRESS START. */
 export default function Title({ onNew, onContinue, canContinue }) {
   const [menu, setMenu] = useState(false)
   useEffect(() => { music.play('title') }, [])
@@ -20,16 +22,23 @@ export default function Title({ onNew, onContinue, canContinue }) {
 
   return (
     <>
-      <Text x={16} y={10} className="big">JOB HUNT</Text>
-      <Text x={28} y={30} className="dim">GREEN VERSION</Text>
-      <Sprite src="brian_front" x={24} y={48} w={32} h={40} />
-      <Sprite src="linkachu" x={88} y={40} w={56} h={56} />
-      <Sprite src="ball" x={64} y={70} w={16} h={16} />
-      {!menu && <Text x={36} y={120} className="blink">PRESS START</Text>}
-      <Text x={8} y={134} className="dim" style={{ fontSize: 6 }}>© 2025 ERROR &amp; EXP</Text>
+      <div className="bg title" />
+      {STARS.map(([x, y], i) => (
+        <span key={i} className={`star ${i % 2 ? 'blink' : ''}`} style={{ left: x, top: y }}>★</span>
+      ))}
+      <Text x={8} y={10} className="big light" style={{ textShadow: '2px 2px 0 #305830' }}>BRIAN'S RESUME</Text>
+      <Text x={52} y={30} style={{ color: '#305830', textShadow: '1px 1px 0 #e0f0d0' }}>(in Pokémon form)</Text>
+
+      <div className="platform" style={{ left: 40, top: 98, width: 160, height: 32 }} />
+      <Sprite src="sprout" x={66} y={82} w={32} h={32} className="bob" />
+      <Sprite src="chick" x={104} y={66} w={48} h={48} />
+      <Sprite src="brian_front" x={150} y={52} w={40} h={64} />
+
+      {!menu && <Text x={76} y={136} className="blink" style={{ color: '#305830', textShadow: '1px 1px 0 #e0f0d0' }}>PRESS START</Text>}
+      <Text x={4} y={151} style={{ fontSize: 5, lineHeight: '5px', color: '#487048', textShadow: 'none' }}>© 2026 ERROR &amp; EXP · FAN PROJECT</Text>
       {menu && (
         <ListMenu
-          x={32} y={92} w={96} h={44} items={items} rowHeight={14} padY={8}
+          x={72} y={104} w={96} h={44} items={items} rowHeight={14} padX={20} padY={10}
           onSelect={(i, it) => (it.label === 'CONTINUE' ? onContinue() : onNew())}
           onCancel={() => setMenu(false)}
         />

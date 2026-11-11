@@ -1,10 +1,18 @@
-/* DMG Game Boy palette. 0 = lightest, 3 = darkest. */
+/* GBA Emerald-era palette. */
 :root {
-  --c0: #9bbc0f;
-  --c1: #8bac0f;
-  --c2: #306230;
-  --c3: #0f380f;
-  --shell: #1a1a1a;
+  --ink: #404048;          /* dark text */
+  --ink-shadow: #d0d0c8;
+  --paper: #f8f8f8;
+  --box-out: #383848;      /* text box outer bar */
+  --box-rim: #d86048;      /* text box red rim */
+  --box-in: #68a0a0;       /* text box teal */
+  --menu-rim: #6870a0;     /* white menu boxes */
+  --hp-box: #f8f8d8;
+  --hp-rim: #405040;
+  --hp-green: #58d080;
+  --hp-yellow: #f8c848;
+  --hp-red: #f05848;
+  --shell: #1c1c24;
   --font: 'Press Start 2P', monospace;
 }
 
@@ -20,7 +28,7 @@ html, body, #root {
 
 body { overflow: hidden; }
 
-/* ---------- shell: centers the integer-scaled 160x144 screen ---------- */
+/* ---------- shell: centers the integer-scaled 240x160 screen ---------- */
 .shell {
   height: 100%;
   display: flex;
@@ -31,21 +39,16 @@ body { overflow: hidden; }
   padding: 12px;
 }
 
-.screen-wrap {
-  position: relative;
-  flex: 0 0 auto;
-}
+.screen-wrap { position: relative; flex: 0 0 auto; }
 
 .screen {
   position: relative;
-  width: 160px;
-  height: 144px;
+  width: 240px;
+  height: 160px;
   overflow: hidden;
-  background: var(--c0);
-  color: var(--c3);
+  background: var(--paper);
+  color: var(--ink);
   transform-origin: top left;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
   font-size: 8px;
   line-height: 8px;
   user-select: none;
@@ -53,38 +56,85 @@ body { overflow: hidden; }
   cursor: pointer;
 }
 
-.screen img {
-  image-rendering: pixelated;
-  display: block;
-}
+.screen img { image-rendering: pixelated; display: block; }
 
-/* Every positioned element on the screen uses pixel coordinates. */
 .abs { position: absolute; }
 
-/* text inside the screen: 8px font on an 8px grid */
-.t { position: absolute; white-space: pre; font-size: 8px; line-height: 8px; }
+/* text: 8px font with the GBA drop shadow */
+.t { position: absolute; white-space: pre; font-size: 8px; line-height: 8px; text-shadow: 1px 1px 0 var(--ink-shadow); }
 .t.big { font-size: 16px; line-height: 16px; }
-.t.huge { font-size: 24px; line-height: 24px; }
-.t.dim { color: var(--c2); }
-.t.light { color: var(--c0); }
+.t.dim { color: #8890a0; }
+.t.light { color: var(--paper); text-shadow: 1px 1px 0 #586068; }
 
-/* Gen 1 style frame: double line border */
+/* ---------- backgrounds ---------- */
+.bg { position: absolute; inset: 0; }
+.bg.battle {
+  background:
+    repeating-linear-gradient(180deg, #e8f4d8 0 3px, #dcecc8 3px 4px);
+}
+.bg.battle::before { /* sky band */
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 6px;
+  background: repeating-linear-gradient(180deg, #a8d0e8 0 2px, #c8e4f0 2px 3px);
+}
+.bg.lab { background: repeating-linear-gradient(180deg, #f8f8f8 0 3px, #d8e8f0 3px 4px); }
+.bg.title { background: repeating-linear-gradient(180deg, #c8e8b0 0 4px, #b8dca0 4px 6px); }
+
+/* grass platform under a sprite */
+.platform {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 45%, #b0e098 0 55%, #98d080 56% 100%);
+  box-shadow: 0 0 0 2px #c8d890 inset, 0 1px 0 #88b870;
+}
+
+.star { position: absolute; color: #f8d870; text-shadow: 1px 1px 0 #d8a048; font-size: 8px; line-height: 8px; }
+
+/* ---------- frames ---------- */
+/* white menu box (FIGHT/ITEM lists, name menu) */
 .frame {
   position: absolute;
-  background: var(--c0);
-  border: 1px solid var(--c3);
-  box-shadow: inset 0 0 0 1px var(--c0), inset 0 0 0 2px var(--c3);
+  background: var(--paper);
+  border: 2px solid var(--menu-rim);
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px #c8d0e8;
 }
+/* Emerald text box: dark bar, red rim, teal body, white text */
+.frame.textbox {
+  background: var(--box-in);
+  border: 3px solid var(--box-rim);
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px var(--box-out);
+}
+.textbox-bar { position: absolute; background: var(--box-out); }
+.frame.textbox .t { color: var(--paper); text-shadow: 1px 1px 0 #485860; }
+
+/* cream HP box with a pointed tail */
+.hpbox {
+  position: absolute;
+  background: var(--hp-box);
+  border: 2px solid var(--hp-rim);
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 2px 2px 0 rgba(64, 80, 64, 0.35);
+}
+.hp-label {
+  position: absolute; font-size: 5px; line-height: 5px; color: #f8e848; background: #605848;
+  padding: 1px 2px; border-radius: 2px; text-shadow: none;
+}
+.hp-track { position: absolute; height: 5px; background: #485048; border-radius: 3px; }
+.hp-bar { position: absolute; height: 3px; border-radius: 2px; transition: width 0.6s steps(12), background 0.3s; }
 
 /* menu cursor */
 .cursor::before {
   content: '\25B6';
   position: absolute;
-  left: -8px;
+  left: -9px;
+  color: var(--ink);
 }
 
 .blink { animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
+
+.bob { animation: bob 1.2s steps(2) infinite; }
+@keyframes bob { 50% { transform: translateY(-2px); } }
 
 .flash { animation: flash 0.12s steps(1) 4; }
 @keyframes flash { 50% { opacity: 0; } }
@@ -98,17 +148,12 @@ body { overflow: hidden; }
 }
 
 .slide-in-right { animation: slideR 0.8s steps(16) forwards; }
-@keyframes slideR { from { transform: translateX(160px); } to { transform: translateX(0); } }
+@keyframes slideR { from { transform: translateX(240px); } to { transform: translateX(0); } }
 .slide-in-left { animation: slideL 0.8s steps(16) forwards; }
-@keyframes slideL { from { transform: translateX(-160px); } to { transform: translateX(0); } }
-
-.hp-bar { position: absolute; height: 2px; background: var(--c3); transition: width 0.6s steps(12); }
-.hp-track { position: absolute; height: 4px; border: 1px solid var(--c3); border-left: none; }
+@keyframes slideL { from { transform: translateX(-240px); } to { transform: translateX(0); } }
 
 /* wipe used for scene transitions */
-.wipe {
-  position: absolute; inset: 0; background: var(--c3); pointer-events: none;
-}
+.wipe { position: absolute; inset: 0; background: #181820; pointer-events: none; }
 .wipe.in { animation: wipeIn 0.5s steps(9) forwards; }
 .wipe.out { animation: wipeOut 0.5s steps(9) forwards; }
 @keyframes wipeIn { from { clip-path: inset(50% 0 50% 0); } to { clip-path: inset(0 0 0 0); } }
@@ -134,9 +179,9 @@ body { overflow: hidden; }
   cursor: pointer;
   text-decoration: none;
 }
-.controls button:hover, .controls a:hover { border-color: #9bbc0f; color: #9bbc0f; }
-.credits { font-size: 7px; color: #666; max-width: 480px; line-height: 12px; }
-.credits a { color: #888; }
+.controls button:hover, .controls a:hover { border-color: #68a0a0; color: #a8e0d8; }
+.credits { font-family: system-ui, sans-serif; font-size: 12px; color: #8a8a94; max-width: 640px; line-height: 1.5; text-align: center; margin: 0; }
+.credits a { color: #b8b8c4; }
 
 /* ---------- plain resume (the RUN escape hatch) ---------- */
 .plain {
@@ -157,11 +202,14 @@ body { overflow: hidden; }
 .plain .links a { margin-right: 14px; color: #1d5c6b; }
 .plain .back {
   display: inline-block; margin-bottom: 24px; font-family: var(--font); font-size: 9px;
-  color: #0f380f; background: #9bbc0f; padding: 8px 10px; text-decoration: none; border: 2px solid #0f380f;
+  color: #fff; background: #68a0a0; padding: 8px 10px; text-decoration: none; border: 2px solid #d86048;
 }
 
 /* honor reduced motion: keep the game usable, drop the flourishes */
 @media (prefers-reduced-motion: reduce) {
-  .slide-in-right, .slide-in-left, .shake, .flash, .wipe { animation-duration: 0.01s !important; }
+  .slide-in-right, .slide-in-left, .bob, .shake, .flash, .wipe { animation-duration: 0.01s !important; }
   .hp-bar { transition: none; }
 }
+
+.plain p { margin: 0 0 12px; }
+body:has(.plain) { overflow: auto; }
