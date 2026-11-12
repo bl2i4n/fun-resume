@@ -136,9 +136,9 @@
   ],
   "items": [
     {
-      "name": "RESUME.PDF",
-      "action": "download",
-      "href": "TODO: /BrianDeLaCruzResume2025.pdf"
+      "name": "PORTFOLIO",
+      "action": "link",
+      "href": "https://briandelacruz408.netlify.app"
     },
     {
       "name": "SUBSTACK",
@@ -148,12 +148,12 @@
     {
       "name": "GITHUB",
       "action": "link",
-      "href": "TODO"
+      "href": "https://github.com/bl2i4n"
     },
     {
       "name": "LINKEDIN",
       "action": "link",
-      "href": "TODO"
+      "href": "https://www.linkedin.com/in/briandelacruz408/"
     },
     {
       "name": "EMAIL",
