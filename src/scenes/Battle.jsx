@@ -173,7 +173,7 @@ export default function Battle({ resume, onCaught, onRun }) {
 
       {/* player */}
       {playerIn && <Sprite src="brian_back" x={20} y={48} w={64} h={64} className={phase === 'enter' ? 'slide-in-left' : ''} />}
-      {playerIn && <HpBox x={120} y={78} w={114} h={28} name={ME} level={JOB.level} label="CONF" pct={100} />}
+      {playerIn && <HpBox x={120} y={78} w={114} h={28} name={ME} level={JOB.level} label="HOPE" pct={100} />}
 
       {/* hire ball */}
       {ball && (

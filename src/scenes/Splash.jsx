@@ -16,18 +16,18 @@ export default function Splash({ onDone, substack }) {
     <>
       <div
         className="abs"
-        style={{ left: 0, top: 36, width: 160, height: 64 }}
+        style={{ left: 0, top: 36, width: 240, height: 64 }}
         onClick={(e) => { e.stopPropagation(); window.open(substack, '_blank', 'noopener') }}
         title="Error & EXP on Substack"
       >
-        <Text x={40} y={0} className="big">ERROR</Text>
-        <Text x={76} y={22}>&amp;</Text>
-        <Text x={56} y={36} className="big">EXP</Text>
-        <Text x={24} y={2} className="blink dim">✦</Text>
-        <Text x={128} y={30} className="blink">✦</Text>
-        <Text x={36} y={50} className="blink dim">✦</Text>
+        <Text center y={0} className="big">ERROR</Text>
+        <Text center y={22}>&amp;</Text>
+        <Text center y={36} className="big">EXP</Text>
+        <Text x={64} y={2} className="blink dim">✦</Text>
+        <Text x={168} y={30} className="blink">✦</Text>
+        <Text x={76} y={50} className="blink dim">✦</Text>
       </div>
-      <Text x={48} y={116} className="dim">presents</Text>
+      <Text center y={116} className="dim">presents</Text>
     </>
   )
 }

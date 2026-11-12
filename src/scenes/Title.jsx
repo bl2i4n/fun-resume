@@ -26,16 +26,17 @@ export default function Title({ onNew, onContinue, canContinue }) {
       {STARS.map(([x, y], i) => (
         <span key={i} className={`star ${i % 2 ? 'blink' : ''}`} style={{ left: x, top: y }}>★</span>
       ))}
-      <Text x={8} y={10} className="big light" style={{ textShadow: '2px 2px 0 #305830' }}>BRIAN'S RESUME</Text>
-      <Text x={52} y={30} style={{ color: '#305830', textShadow: '1px 1px 0 #e0f0d0' }}>(in Pokémon form)</Text>
+      <Text center y={10} className="big light" style={{ textShadow: '2px 2px 0 #305830' }}>BRIAN'S RESUME</Text>
+      <Text center y={30} style={{ color: '#305830', textShadow: '1px 1px 0 #e0f0d0' }}>(in Pokémon form)</Text>
 
       <div className="platform" style={{ left: 40, top: 98, width: 160, height: 32 }} />
-      <Sprite src="sprout" x={66} y={82} w={32} h={32} className="bob" />
-      <Sprite src="chick" x={104} y={66} w={48} h={48} />
-      <Sprite src="brian_front" x={150} y={52} w={40} h={64} />
+      {/* x positions put each sprite's visible pixels (not its canvas) on 80 / 120 / 160 */}
+      <Sprite src="sprout" x={64} y={82} w={32} h={32} className="bob" />
+      <Sprite src="chick" x={96} y={66} w={48} h={48} />
+      <Sprite src="brian_front" x={140} y={50} w={40} h={64} />
 
-      {!menu && <Text x={76} y={136} className="blink" style={{ color: '#305830', textShadow: '1px 1px 0 #e0f0d0' }}>PRESS START</Text>}
-      <Text x={4} y={151} style={{ fontSize: 5, lineHeight: '5px', color: '#487048', textShadow: 'none' }}>© 2026 ERROR &amp; EXP · FAN PROJECT</Text>
+      {!menu && <Text center y={136} className="blink" style={{ color: '#305830', textShadow: '1px 1px 0 #e0f0d0' }}>PRESS START</Text>}
+      <Text center y={151} style={{ fontSize: 5, lineHeight: '5px', color: '#487048', textShadow: 'none' }}>© 2026 ERROR &amp; EXP · FAN PROJECT</Text>
       {menu && (
         <ListMenu
           x={72} y={104} w={96} h={44} items={items} rowHeight={14} padX={20} padY={10}
