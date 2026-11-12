@@ -42,24 +42,26 @@ line([(26, 41), (38, 41)], 'g')
 rect((31, 24, 41, 33), 's')
 rect((36, 24, 41, 31), 'S')
 
-# ---- head: skin first, hair over the back and top, leaving the right cheek/jaw visible
-ell((27, 7, 50, 31), 'S')
-ell((18, 3, 41, 28), 'h')
-# hair tufts along the crown so the silhouette reads curly
-for (x, y) in [(23, 2), (28, 1), (33, 1), (38, 3), (42, 6), (19, 6)]:
-    ell((x - 2, y, x + 2, y + 3), 'h')
-ell((36, 4, 47, 12), 'h')  # front of the hair, over the forehead
-# sideburn/hairline running down in front of the ear
+# ---- head: skin first, then a short rounded hair cap that stops above the nape
+ell((21, 6, 50, 31), 'S')
+ell((18, 2, 44, 27), 'h')
+ell((35, 4, 47, 12), 'h')  # front of the hair, over the forehead
+# tiny 1-2px spikes along the crown, matching the front sprite's short curls
+for x in (22, 23, 27, 31, 32, 36, 40):
+    top = next(y for y in range(H) if img.getpixel((x, y)) == IDX['h'])
+    px(x, top - 1, 'h')
+# sideburn in front of the ear
 poly([(38, 10), (42, 11), (41, 16), (38, 16)], 'h')
 # ear
 ell((34, 14, 40, 23), 'K')
 px(36, 17, 's'); px(36, 18, 's'); px(37, 19, 's'); px(36, 20, 's')
-# profile hints: brow, eye, nose tip, cheek blush
+# profile: brow, eye, nose, cheek blush, mouth corner
 line([(45, 13), (48, 13)], 'h')
 px(47, 15, 'D'); px(47, 16, 'D'); px(46, 16, 'D')
-px(50, 18, 'S'); px(50, 19, 'S'); px(51, 19, 'S')
-px(44, 21, 'K'); px(45, 21, 'K'); px(46, 21, 'K')
-line([(47, 24), (49, 24)], 's')  # mouth corner
+poly([(48, 15), (52, 19), (52, 21), (48, 21)], 'S')  # nose sticks out past the cheek
+px(51, 20, 's'); px(50, 21, 's')
+px(43, 21, 'K'); px(44, 21, 'K'); px(45, 21, 'K')
+line([(47, 24), (49, 24)], 's')
 # jaw shading where it meets the neck
 line([(38, 28), (45, 28)], 's')
 
@@ -94,8 +96,8 @@ for y in range(H):
                 break
 
 # curly hair texture and a rim highlight, applied after outlining so the edge stays clean
-CURLS = [(24, 5), (29, 4), (34, 5), (39, 7), (43, 8), (21, 10), (26, 9), (31, 10), (35, 12), (23, 15), (28, 14),
-         (32, 17), (20, 19), (25, 20), (30, 22), (34, 24), (22, 24), (27, 26)]
+CURLS = [(24, 6), (29, 5), (34, 6), (39, 8), (22, 11), (27, 10), (32, 11), (36, 13), (24, 16), (29, 15),
+         (33, 18), (21, 19), (26, 20), (31, 21), (35, 22), (25, 23)]
 for (x, y) in CURLS:
     if grid[y][x] == 'h':
         grid[y][x] = 'd'

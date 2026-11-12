@@ -15,6 +15,22 @@
   },
   "experience": [
     {
+      "company": "Finch",
+      "role": "Technical Support Engineer",
+      "year": "Mar 2026 – Present",
+      "bullets": [
+        "Troubleshoot customer issues with Finch's unified employment API, debugging authentication flows, connection health, and data sync jobs across HRIS and payroll providers to find root causes.",
+        "Investigate API requests, responses, and logs to reproduce issues, then partner with engineering on fixes and escalations.",
+        "Work at an AI-forward company, using Claude and agentic AI workflows to investigate tickets, pull context from logs and internal tools, and draft accurate customer responses.",
+        "Built AI-powered automations that resolve support tickets more efficiently and reduce time spent on repetitive troubleshooting."
+      ],
+      "battleText": [
+        "BRIAN used FINCH!",
+        "Debugged API auth, connections and data syncs across HRIS and payroll providers.",
+        "Used Claude agents and AI automations to solve tickets faster."
+      ]
+    },
+    {
       "company": "OneTrust",
       "role": "Senior Support Engineer",
       "year": "2025",

@@ -3,8 +3,8 @@ import Text from '../components/Text.jsx'
 import { useInput } from '../input.js'
 import { sfx } from '../audio.js'
 
-/** Studio splash: ERROR & EXP. Click the logo for the Substack, otherwise it auto-advances. */
-export default function Splash({ onDone, substack }) {
+/** Studio splash: ERROR & EXP. Any click or key skips it; otherwise it auto-advances. The Substack link lives in the controls bar. */
+export default function Splash({ onDone }) {
   useEffect(() => {
     sfx.sparkle()
     const t = setTimeout(onDone, 2400)
@@ -14,12 +14,7 @@ export default function Splash({ onDone, substack }) {
 
   return (
     <>
-      <div
-        className="abs"
-        style={{ left: 0, top: 36, width: 240, height: 64 }}
-        onClick={(e) => { e.stopPropagation(); window.open(substack, '_blank', 'noopener') }}
-        title="Error & EXP on Substack"
-      >
+      <div className="abs" style={{ left: 0, top: 36, width: 240, height: 64 }}>
         <Text center y={0} className="big">ERROR</Text>
         <Text center y={22}>&amp;</Text>
         <Text center y={36} className="big">EXP</Text>

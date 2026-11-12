@@ -45,7 +45,7 @@ export default function App() {
   return (
     <div className="shell">
       <Screen>
-        {scene === 'splash' && <Splash substack={resume.substack} onDone={() => go('title')} />}
+        {scene === 'splash' && <Splash onDone={() => go('title')} />}
         {scene === 'title' && <Title canContinue={seenIntro()} onNew={() => go('intro')} onContinue={() => go('battle')} />}
         {scene === 'intro' && <Intro job={resume.job} onDone={() => { markIntro(); go('battle') }} />}
         {scene === 'battle' && <Battle resume={resume} onCaught={() => go('caught')} onRun={() => go('plain')} />}
@@ -55,6 +55,7 @@ export default function App() {
       <div className="controls">
         <button onClick={toggle}>SOUND: {sound ? 'ON' : 'OFF'}</button>
         <button onClick={() => go('plain')}>PLAIN RESUME</button>
+        <a href={resume.substack} target="_blank" rel="noopener noreferrer">ERROR &amp; EXP SUBSTACK</a>
         <span>A: Enter / Space / tap · B: X / Esc · move: arrows</span>
       </div>
       <footer className="credits">

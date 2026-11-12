@@ -223,7 +223,7 @@ export default function Battle({ resume, onCaught, onRun }) {
             onSelect={(i) => useMove(subOf, i)}
             onCancel={() => setPhase('fight')}
           />
-          <div className="hpbox" style={{ left: 150, top: 92, width: 86, height: 18 }}>
+          <div className="hpbox" style={{ left: 142, top: 92, width: 94, height: 18 }}>
             <div className="t" style={{ left: 5, top: 5 }}>{MOVES[subOf].label}</div>
           </div>
         </>
